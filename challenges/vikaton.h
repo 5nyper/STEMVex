@@ -10,6 +10,7 @@ void turnX(int left, int right, int i);
 
 #define MAX_PORT_NUM 127
 #define MIN_PORT_NUM -127
+#define _90DEG 1190
 
 // function bodies (ROBOTC has no compiling options, 
 // so I had to put both prototypes and function bodies in the same file
