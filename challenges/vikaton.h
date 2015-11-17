@@ -35,4 +35,6 @@ void turnX(int left, int right, int i) {
 	wait1Msec(i);
 }
 
+// General Notes: http://www.robotc.net/blog/2012/03/07/programming-with-the-new-vex-integrated-motor-encoders/
+
 #endif
