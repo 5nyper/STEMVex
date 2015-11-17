@@ -2,8 +2,8 @@
 #define VIKATON_H_
 
 // prototypes (not needed, but easier to know what's needed for parameters
-void moveForward(int i);
-void moveBackward(int i);
+void moveForward(int x, int y);
+void moveBackward(int x, int y);
 void turnX(int left, int right, int i);
 
 // Macros
@@ -12,18 +12,21 @@ void turnX(int left, int right, int i);
 #define MIN_PORT_NUM -127
 #define _90DEG 1190
 
-// function bodies (ROBOTC has no compiling options, 
+// function bodies (ROBOTC has no compiling options,
 // so I had to put both prototypes and function bodies in the same file
-void moveForward(int i) {
-	motor[port1] = 100;
-	motor[port10] = 100;
-	wait1Msec(i);
+void moveForward(int x, int y) {
+	motor[port1] = x;
+	motor[port10] = x;
+	wait1Msec(y);
 }
 
-void moveBackward(int i) {
-	motor[port1] = -100;
-	motor[port10] = -100;
-	wait1Msec(i);
+void moveBackward(int x, int y) {
+	if (x > 0) {
+		x = x - x - x;
+	}
+	motor[port1] = x;
+	motor[port10] = x;
+	wait1Msec(y);
 }
 
 void turnX(int left, int right, int i) {
