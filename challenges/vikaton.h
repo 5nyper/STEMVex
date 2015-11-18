@@ -5,12 +5,15 @@
 void moveForward(int x, int y);
 void moveBackward(int x, int y);
 void turnX(int left, int right, int i);
+void clearEncoders();
 
 // Macros
 
 #define MAX_PORT_NUM 127
 #define MIN_PORT_NUM -127
-#define _90DEG 1190
+#define _90DEG 950
+#define LEFT 0
+#define RIGHT 1
 
 // function bodies (ROBOTC has no compiling options,
 // so I had to put both prototypes and function bodies in the same file
@@ -29,10 +32,26 @@ void moveBackward(int x, int y) {
 	wait1Msec(y);
 }
 
-void turnX(int left, int right, int i) {
-	motor[port1] = left;
-	motor[port10] = right;
-	wait1Msec(i);
+void turnX(int dir, int i) {
+	if (dir == LEFT) {
+		while (nMotorEncoder[leftMotor] < i) {
+			motor[leftMotor] = 100;
+			motor[rightMotor] = 0;
+		}
+		clearEncoders();
+	}
+	else if (dir == RIGHT) {
+		while (nMotorEncoder[rightMotor] < i) {
+			motor[rightMotor] = 100;
+			motor[leftMotor] = 0;
+		}
+		clearEncoders();
+	}
+}
+
+void clearEncoders() {
+	nMotorEncoder[leftMotor] = 0;
+	nMotorEncoder[rightMotor] = 0;
 }
 
 // General Notes: http://www.robotc.net/blog/2012/03/07/programming-with-the-new-vex-integrated-motor-encoders/
