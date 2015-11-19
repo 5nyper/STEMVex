@@ -18,29 +18,34 @@ void clearEncoders();
 // function bodies (ROBOTC has no compiling options,
 // so I had to put both prototypes and function bodies in the same file
 void moveForward(int x, int y) {
-	motor[port1] = x;
-	motor[port10] = x;
-	wait1Msec(y);
+	clearEncoders();
+	while (nMotorEncoder[leftMotor] < y && nMotorEncoder[rightMotor] < y) {
+		motor[leftMotor] = x;
+		motor[rightMotor] = x;
+	}
 }
 
 void moveBackward(int x, int y) {
+	clearEncoders();
 	if (x > 0) {
 		x = x - x - x;
 	}
-	motor[port1] = x;
-	motor[port10] = x;
-	wait1Msec(y);
+	while (nMotorEncoder[leftMotor] < y && nMotorEncoder[rightMotor] < y) {
+		motor[leftMotor] = x;
+		motor[rightMotor] = x;
+	}
 }
 
 void turnX(int dir, int i) {
-	if (dir == LEFT) {
+	clearEncoders();
+	if (dir == RIGHT) {
 		while (nMotorEncoder[leftMotor] < i) {
 			motor[leftMotor] = 100;
 			motor[rightMotor] = 0;
 		}
 		clearEncoders();
 	}
-	else if (dir == RIGHT) {
+	else if (dir == LEFT) {
 		while (nMotorEncoder[rightMotor] < i) {
 			motor[rightMotor] = 100;
 			motor[leftMotor] = 0;
