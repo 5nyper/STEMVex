@@ -4,7 +4,7 @@
 // prototypes (not needed, but easier to know what's needed for parameters
 void moveForward(int x, int y);
 void moveBackward(int x, int y);
-void turnX(int left, int right, int i);
+void turnX(int dir, int x, int i);
 void clearEncoders();
 
 // Macros
@@ -36,18 +36,18 @@ void moveBackward(int x, int y) {
 	}
 }
 
-void turnX(int dir, int i) {
+void turnX(int dir, int x, int i) {
 	clearEncoders();
 	if (dir == RIGHT) {
 		while (nMotorEncoder[leftMotor] < i) {
-			motor[leftMotor] = 100;
+			motor[leftMotor] = x;
 			motor[rightMotor] = 0;
 		}
 		clearEncoders();
 	}
 	else if (dir == LEFT) {
 		while (nMotorEncoder[rightMotor] < i) {
-			motor[rightMotor] = 100;
+			motor[rightMotor] = x;
 			motor[leftMotor] = 0;
 		}
 		clearEncoders();
