@@ -1,2 +1,2 @@
 # STEMVex
-ROBOT-C for the Vex Robot
+Completing challenges for Robot Virtual World in ROBOTC
