@@ -2,9 +2,9 @@
 #define VIKATON_H_
 
 // prototypes (not needed, but easier to know what's needed for parameters
-void moveForward(int x, int y);
-void moveBackward(int x, int y);
-void turnX(int dir, int x, int i);
+void moveForward(int power, int distance);
+void moveBackward(int power, int distance);
+void turnX(int direction, int power, int degrees);
 void clearEncoders();
 
 // Macros
@@ -17,37 +17,37 @@ void clearEncoders();
 
 // function bodies (ROBOTC has no compiling options,
 // so I had to put both prototypes and function bodies in the same file
-void moveForward(int x, int y) {
+void moveForward(int power, int distance) {
 	clearEncoders();
-	while (nMotorEncoder[leftMotor] < y && nMotorEncoder[rightMotor] < y) {
-		motor[leftMotor] = x;
-		motor[rightMotor] = x;
+	while (nMotorEncoder[leftMotor] < distance && nMotorEncoder[rightMotor] < distance) {
+		motor[leftMotor] = power;
+		motor[rightMotor] = power;
 	}
 }
 
-void moveBackward(int x, int y) {
+void moveBackward(int power, int distance) {
 	clearEncoders();
-	if (x > 0) {
-		x = x - x - x;
+	if (power > 0) {
+		power = power - power - power;
 	}
-	while (nMotorEncoder[leftMotor] < y && nMotorEncoder[rightMotor] < y) {
-		motor[leftMotor] = x;
-		motor[rightMotor] = x;
+	while (nMotorEncoder[leftMotor] < distance && nMotorEncoder[rightMotor] < distance) {
+		motor[leftMotor] = power;
+		motor[rightMotor] = power;
 	}
 }
 
-void turnX(int dir, int x, int i) {
+void turnX(int direction, int power, int degrees) {
 	clearEncoders();
-	if (dir == RIGHT) {
-		while (nMotorEncoder[leftMotor] < i) {
-			motor[leftMotor] = x;
+	if (direction == RIGHT) {
+		while (nMotorEncoder[leftMotor] < degrees) {
+			motor[leftMotor] = power;
 			motor[rightMotor] = 0;
 		}
 		clearEncoders();
 	}
-	else if (dir == LEFT) {
-		while (nMotorEncoder[rightMotor] < i) {
-			motor[rightMotor] = x;
+	else if (direction == LEFT) {
+		while (nMotorEncoder[rightMotor] < degrees) {
+			motor[rightMotor] = power;
 			motor[leftMotor] = 0;
 		}
 		clearEncoders();
