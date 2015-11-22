@@ -30,7 +30,7 @@ void moveBackward(int power, int distance) {
 	if (power > 0) {
 		power = -power;
 	}
-	while (nMotorEncoder[leftMotor] < distance && nMotorEncoder[rightMotor] < distance) {
+	while (nMotorEncoder[leftMotor] > -distance && nMotorEncoder[rightMotor] > -distance) {
 		motor[leftMotor] = power;
 		motor[rightMotor] = power;
 	}

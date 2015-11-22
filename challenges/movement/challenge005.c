@@ -3,10 +3,10 @@
 
 /*
 	To complete this challenge, program the robot to accelerate from power level 0
-	to power level 127. 
+	to power level 127.
 */
 
-#include "vikaton.h"
+#include <../vikaton.h>
 
 task main {
 	clearLCDLine(0);
