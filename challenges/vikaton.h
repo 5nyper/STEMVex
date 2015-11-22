@@ -28,7 +28,7 @@ void moveForward(int power, int distance) {
 void moveBackward(int power, int distance) {
 	clearEncoders();
 	if (power > 0) {
-		power = power - power - power;
+		power = -power;
 	}
 	while (nMotorEncoder[leftMotor] < distance && nMotorEncoder[rightMotor] < distance) {
 		motor[leftMotor] = power;
