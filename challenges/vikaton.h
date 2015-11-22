@@ -11,7 +11,7 @@ void clearEncoders();
 
 #define MAX_PORT_NUM 127
 #define MIN_PORT_NUM -127
-#define _90DEG 950
+#define _90DEG 950            // 90 degrees with Encoders
 #define LEFT 0
 #define RIGHT 1
 
@@ -28,7 +28,7 @@ void moveForward(int power, int distance) {
 void moveBackward(int power, int distance) {
 	clearEncoders();
 	if (power > 0) {
-		power = -power;
+		power = -power;  // negate so it goes backward if the value is greater than 0
 	}
 	while (nMotorEncoder[leftMotor] > -distance && nMotorEncoder[rightMotor] > -distance) {
 		motor[leftMotor] = power;
